@@ -48,6 +48,7 @@ body {
   left: 10%;
   top: 5%;
   width: 80%;
+  opacity: 0.9;
 }
 @media (max-width: 992px) {
   .qt-chat.is-large {

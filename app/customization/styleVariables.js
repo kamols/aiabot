@@ -1,10 +1,10 @@
 // =================================BACKGROUND=================================
-export const background = 'url("http://s3.amazonaws.com/icalialabs/assets/img/bg.png") no-repeat center center';
+export const background = 'url("https://images.unsplash.com/photo-1473679408190-0693dd22fe6a?ixlib=rb-0.3.5&s=21c7b717bbda2a9eb981bb9cc9e52dcb&auto=format&fit=crop&w=3300&q=80") no-repeat center center';
 
 // =================================COLORS=================================
 
 // --- Char General Colors ---//
-export const primaryColor = '#dc2a23';
+export const primaryColor = '#d31145';
 export const onlineColor = '#7ed321';
 export const offlineColor = '#e5e5e5';
 export const textColor = '#5d6975';
@@ -20,7 +20,7 @@ export const userAvatar = '#529aff';
 export const userAvatarTextColor = '#fff';
 export const botAvatar = primaryColor;
 export const botAvatarTextColor = '#fff';
-export const botAvatarIcon = 'https://s3.amazonaws.com/icalialabs/alpha/botAvatar.png';
+export const botAvatarIcon = 'http://www.aia.com.au/content/dam/aia/logos/aia-logo-lockup-au-2x.png';
 
 // ---Bubbles/Dialogues/Badges Colors---//
 export const bubbleTextColorBot = 'black';

@@ -177,7 +177,7 @@ function botThinkingTime(message) {
   }
   let time = 1000;
   if (window.location.href.indexOf('localhost') > -1) {
-    time = 0;
+    time = 500;
   }
   const messageLength = message.length;
   if (messageLength < 100) {

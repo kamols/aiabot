@@ -13,7 +13,7 @@ const common_greetings_negative = /(?!(^hello|^hi|^hey|^hllo|^sup|^hola)\b)\w+/i
 
 const questions = {
   start: {
-    botPrompt: 'Hello Human, my name is <strong>Alpha</strong>, I am an awesome <strong>chatbot</strong>',
+    botPrompt: 'Hello, my name is <strong>Di</strong>',
     answers: [
       {
         nextId: 'myPurpose',
@@ -21,7 +21,7 @@ const questions = {
     ],
   },
   myPurpose: {
-    botPrompt: 'My purpose is to be a simple chatbot that <strong>guides users</strong> and <strong>is able to make decisions and make recommendations.</strong>',
+    botPrompt: 'Hope I can be of assistance to you today',
     answers: [
       {
         nextId: 'yourName',
@@ -29,7 +29,8 @@ const questions = {
     ],
   },
   yourName: {
-    botPrompt: 'So, What is your name?',
+    botPrompt: "Do you mind telling me <strong>your name</strong>?",
+
     input: textField(),
     answers: [
       {
@@ -52,7 +53,7 @@ const questions = {
 	  ],
   },
   greetings_whatsYourNameAgain: {
-	  botPrompt: 'So what’s <strong>your name</strong>?',
+	  botPrompt: "Lets start with <strong>your name</strong>?",
 	  input: textField(),
 	  answers: [
 	    {
@@ -67,85 +68,345 @@ const questions = {
 	  ],
   },
   asYouCanSee: {
-    botPrompt: 'So <strong>@varName</strong>, as you can see I can remember things the user says.',
+    botPrompt: 'So <strong>@varName</strong>, how can I assist you today?',
     type: RTypes.TRANSFORMED_TEXT,
     varName: 'userName',
-    answers: [
-			{ nextId: 'emojisHtml' },
-    ],
-  },
-  emojisHtml: {
-    botPrompt: "I can enhance my dialogue with emojis 🎉 and also using inline <span style='color:purple; background-color:white;font-weight:bold'>HTML</span>",
-    answers: [
-			{ nextId: 'mediaBubbles1' },
-    ],
-  },
-  mediaBubbles1: {
-    botPrompt: 'I can also share <strong>images and animated GIFs</strong> like so:',
-    answers: [
-			{ nextId: 'mediaBubbles2' },
-    ],
-  },
-  mediaBubbles2: {
-    botPrompt: 'https://media.giphy.com/media/bDL3BsB4ViI2k/giphy.gif',
-    type: RTypes.MEDIA,
-    answers: [
-      {
-        nextId: 'select',
-      },
-    ],
-  },
-  select: {
-    botPrompt: 'I can also offer <strong>predefined options</strong> to choose from:',
-    varName: 'userName',
-    input: selectField(['Dope!', 'Cool!']),
-    answers: [
-			{ nextId: 'tags' },
-    ],
-  },
-  tags: {
-    botPrompt: 'Or even <strong>allow users to select many tags</strong> to form an answer:',
-    varName: 'userName',
-    input: tagsField(['Do go on..', 'Amazing!', "I'm loving this!", '🍕']),
-    answers: [
-			{ nextId: 'bagsSystem' },
-    ],
-  },
-  bagsSystem: {
-    botPrompt: "Besides all that, I can add up points in my <strong>Bags System</strong>, to eventually make a 'Recommendation'",
-    answers: [
-			{ nextId: 'letsTryIt' },
-    ],
-  },
-  letsTryIt: {
-    botPrompt: "Let's try it!",
     answers: [
 			{ nextId: 'question1' },
     ],
   },
+  // emojisHtml: {
+  //   botPrompt: "I can enhance my dialogue with emojis 🎉 and also using inline <span style='color:purple; background-color:white;font-weight:bold'>HTML</span>",
+  //   answers: [
+		// 	{ nextId: 'mediaBubbles1' },
+  //   ],
+  // },
+  // mediaBubbles1: {
+  //   botPrompt: 'I can also share <strong>images and animated GIFs</strong> like so:',
+  //   answers: [
+		// 	{ nextId: 'mediaBubbles2' },
+  //   ],
+  // },
+  // mediaBubbles2: {
+  //   botPrompt: 'https://www.moneysmart.gov.au/media/559279/add-on-insurance1.png',
+  //   type: RTypes.MEDIA,
+  //   answers: [
+  //     {
+  //       nextId: 'select',
+  //     },
+  //   ],
+  // },
+  // select: {
+  //   botPrompt: 'I would like to <strong>predefined options</strong> to choose from:',
+  //   varName: 'userName',
+  //   input: selectField(['Dope!', 'Cool!']),
+  //   answers: [
+		// 	{ nextId: 'tags' },
+  //   ],
+  // },
+  // tags: {
+  //   botPrompt: 'Are you looking for:',
+  //   varName: 'userName',
+  //   input: tagsField(['Adjust my cover', 'Calculate my cover', "Get a quote", 'Make a claim']),
+  //   answers: [
+		// 	{ nextId: 'bagsSystem' },
+  //   ],
+  // },
+  // bagsSystem: {
+  //   botPrompt: "Besides all that, I can add up points in my <strong>Bags System</strong>, to eventually make a 'Recommendation'",
+  //   answers: [
+		// 	{ nextId: 'letsTryIt' },
+  //   ],
+  // },
+  // letsTryIt: {
+  //   botPrompt: "Let's try it!",
+  //   answers: [
+		// 	{ nextId: 'question1' },
+  //   ],
+  // },
   question1: {
-    botPrompt: 'Tell me <strong>@varName</strong>: Do you like to have fun?',
-    type: RTypes.TRANSFORMED_TEXT,
+    botPrompt: 'What are looking to do today?',
+    botPrompt: "https://media.giphy.com/media/12zV7u6Bh0vHpu/giphy.gif",
+    type: RTypes.MEDIA,
     varName: 'userName',
-    input: selectField(['Yes!', 'No.', "I'm not Sure"]),
+    input: selectField(['Adjust my cover', 'Calculate my cover', "Get a quote", 'Make a claim']),
     answers: [
       {
-        answer: 'Yes!',
-        nextId: 'cool',
-        sumToBags: [{ name: 'rickAndMorty', points: 3 }, { name: 'shroedingersCat', points: 2 }, { name: 'recursion', points: 1 }],
+        answer: 'Adjust my cover',
+        nextId: 'calculating',
       },
       {
-        answer: 'No.',
-        nextId: 'hmkay',
-        sumToBags: [{ name: 'shroedingersCat', points: 1 }, { name: 'recursion', points: 3 }],
+        answer: 'Calculate my cover',
+        nextId: 'calculating',
       },
+       {
+        answer: 'Get a quote',
+        nextId: 'calculating',
+      },     
       {
-        answer: "I'm not Sure",
-        nextId: 'hmm',
-        sumToBags: [{ name: 'rickAndMorty', points: 1 }, { name: 'shroedingersCat', points: 2 }, { name: 'recursion', points: 1 }],
+        answer: "Make a claim",
+        nextId: 'calculating',
       },
     ],
   },
+
+
+
+
+
+
+calculating:{
+   botPrompt: "<strong><em>Calculate the insurance you need </em></strong> </br> </br>Insurance helps to protect you, your family, your income and your lifestyle if something happens to you. </br> </br>The Insurance Needs Calculator will help you work out how much Death, Total and Permanent Disablement (TPD) and Income Protection (IP) cover you may need. </br> </br>This will take a few minutes. </br> </br>You will be asked one set of personal and financial questions. </br> Some questions are optional, but the more information you provide the more accurate the calculated cover will be. </br> Once you've worked out your insurance needs, you can obtain a quote on this or any other level of insurance cover. </br>The data you provide within this Insurance Needs Calculator will be used solely for the purpose of producing the calculated cover and will not be used for any other purpose.",
+botPrompt: "https://media0.giphy.com/media/l4Jz19hgVBnCCM8uY/200w.webp",
+    type: RTypes.MEDIA, 
+    varName: 'calculate',
+    input: selectField(["Let's start calculating"]),
+    answers: [
+   { nextId: 'dob' },
+     ],
+  },
+
+
+dob:{
+  botPrompt: "Let's start with your date of birth",
+   
+  varName: 'dob',
+    type: RTypes.TRANSFORMED_TEXT,
+    input: textField(),
+        answers: [
+   { nextId: 'gender' },
+     ],
+},
+
+
+gender:{
+  botPrompt: "I am a",
+   botPrompt: "https://media2.giphy.com/media/l0HlVq3nJvhSZiZEs/200w.webp",
+    type: RTypes.MEDIA, 
+
+  varName: 'gender',
+    input: selectField(['Male!', 'Female']),
+
+
+
+        answers: [
+   { nextId: 'income' },
+     ],
+},
+
+income:{
+  botPrompt: "My gross annual salary including superannuation contributions, and any fringe benefits. This excludes any salary sacrificed components",
+  varName: 'gender',
+    type: RTypes.TRANSFORMED_TEXT,
+    input: textField(),
+
+
+
+        answers: [
+   { nextId: 'frequency' },
+     ],
+},
+
+
+
+  frequency: {
+    botPrompt: 'How frequently?',
+    type: RTypes.TRANSFORMED_TEXT,
+    varName: 'frequency',
+    input: selectField(['Per week', 'Per forthnight', "Per month", 'Per year']),
+        answers: [
+   { nextId: 'occupation' },
+     ],
+  },
+
+
+
+ occupation:{
+  botPrompt: "I work as",
+
+  varName: 'occupation',
+    type: RTypes.TRANSFORMED_TEXT,
+    input: textField(),
+
+
+
+        answers: [
+   { nextId: 'management' },
+     ],
+},
+
+
+
+ management:{
+  botPrompt: "All members automatically receive standard cover unless they choose otherwise. If you’re eligible, you can apply for management cover which may better reflect your circumstances. </br></br>You must meet all of the below criteria in order for management cover to apply. If you do not meet the below criteria please proceed to the next question. </br><br/>I am engaged in a white collar occupation and I am earning at least $100,000 per annum including fringe benefits* (pro rata for part time)^, and <br> The duties of my occupation are limited to professional or managerial duties (at least 80% within an office environment), and</br>I meet one of the following: </br>I hold a degree which is necessary for performing my occupation, or </br>I am a member of a professional or government institute or body which is necessary for performing my occupation, or </br>I have 10 years of service in a senior management or executive role.</br></br><br>You can choose from standard or management cover below:",
+  varName: 'management',
+    type: RTypes.TRANSFORMED_TEXT,
+    input: selectField(['Standard', 'Management']),
+
+
+
+        answers: [
+   { nextId: 'hours' },
+     ],
+},
+
+
+
+  hours: {
+         botPrompt: "https://media2.giphy.com/media/nCVVpakhBTwBi/200w.webp",
+    type: RTypes.MEDIA, 
+    varName: 'hours',
+    input: selectField(['I work less than 15 hours per week', 'No, more']),
+    answers: [
+     { nextId: 'employment' },
+    ],
+  },
+
+
+ employment: {
+    botPrompt: 'I am a casual/contract employee',
+    varName: 'employment',
+    input: selectField(['Yes', 'No']),
+    answers: [
+     { nextId: 'dependant' },
+    ],
+  },
+
+dependant: {
+       botPrompt: "https://media.giphy.com/media/jIL3lq9Ah00tG/giphy.gif",
+    type: RTypes.MEDIA,    
+    varName: 'dependant',
+    input: selectField(['I have a dependant spouse or partner', 'No']),
+    answers: [
+     { nextId: 'children' },
+    ],
+  },
+
+children: {
+      botPrompt: "https://media1.giphy.com/media/xUPOqpRhPpekA6fLk4/200w.webp",
+    type: RTypes.MEDIA,    
+    varName: 'children',
+    input: selectField(['I currently have dependant children', 'No']),
+    answers: [
+     { nextId: 'cash' },
+    ],
+  },
+
+  
+cash: {
+    botPrompt: 'How much money you currently have in your savings and cheque accounts?',
+    varName: 'cash',
+    input: textField(),
+    answers: [
+     { nextId: 'investment' },
+    ],
+  },
+
+
+investment: {
+    botPrompt: "Only include your investment properties here, don't worry about adding your own home",
+    varName: 'cash',
+    input: textField(),
+    answers: [
+     { nextId: 'shares' },
+    ],
+  },
+
+
+  shares: {
+    botPrompt:  "What is the value of your direct share portfolio.",
+    varName: 'shares',
+    input: textField(),
+    answers: [
+     { nextId: 'super' },
+    ],
+  },
+
+  super: {
+    botPrompt:  "What is your superannuation balance",
+    varName: 'shares',
+    input: textField(),
+    answers: [
+     { nextId: 'mortgage' },
+    ],
+  },
+
+mortgage: {
+    botPrompt:  "What is your current outstanding balance on all of your properties",
+    varName: 'mortgage',
+    input: textField(),
+    answers: [
+     { nextId: 'car' },
+    ],
+  },
+
+
+
+   car: {
+    botPrompt:  "How much are your car loans?",
+    varName: 'car',
+    input: textField(),
+    answers: [
+     { nextId: 'credit' },
+    ],
+  },
+
+
+   credit: {
+    botPrompt:  "How much is on your credit cards?",
+    varName: 'credit',
+    input: textField(),
+    answers: [
+     { nextId: 'loan' },
+    ],
+  },
+
+
+   loan: {
+    botPrompt:  "Any other loans that you haven't already noted",
+    varName: 'loan',
+    input: textField(),
+    answers: [
+     { nextId: 'cover' },
+    ],
+  },
+
+
+  cover: {
+    botPrompt: 'https://www.amfam.com/-/media/images/amfam/infographics/life/lifeinsurance-d.jpg',
+    type: RTypes.MEDIA,
+    answers: [
+      {
+        nextId: 'apply',
+      },
+    ],
+  },
+
+
+apply: {
+    botPrompt: "Hey, big thanks! Would you like to apply for the cover?",
+    varName: 'apply',
+    input: selectField(['Later', 'Apply']),
+    answers: [
+     { nextId: 'noworries' },
+    ],
+  },
+
+
+
+  noworries:{
+    botPrompt: "No worries, have a great day",
+    botPrompt: 'https://media.giphy.com/media/58F2iDcbRtFkNAw9tx/giphy.gif',
+    type: RTypes.MEDIA, 
+    varName: 'noworries',
+    input: endOfConversation(),
+    answers: [
+     { nextId: 'noworries' },
+    ],
+  },
+
+
+
   cool: {
     botPrompt: 'Cool! 😎',
     answers: [
